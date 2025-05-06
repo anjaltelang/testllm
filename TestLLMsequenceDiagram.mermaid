@@ -1,0 +1,17 @@
+sequenceDiagram
+        actor User
+        actor Agent
+        actor Tool
+        actor RHACS
+        actor LLM
+        User->>Agent: Give Risks
+        Agent->>LLM: Give Risks + Tools
+        LLM->>Agent: Request Tool Call
+        Agent->>Tool: Calls Tool
+        Tool->>RHACS: Calls API
+        RHACS->>Tool: Risks 
+        Tool->>Agent: JSON Formatted Risks
+        Agent->>LLM: JSON Formatted Risks
+        LLM->>Agent: Human-readable Risks and Remediations
+        Agent->>User: Human-readable Risks and Remediations
+        
