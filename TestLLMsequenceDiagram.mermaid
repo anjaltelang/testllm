@@ -4,14 +4,14 @@ sequenceDiagram
         actor Tool
         actor RHACS
         actor LLM
-        User->>Agent: Give Risks
-        Agent->>LLM: Give Risks + Tools
-        LLM->>Agent: Request Tool Call
-        Agent->>Tool: Calls Tool
-        Tool->>RHACS: Calls API
-        RHACS->>Tool: Risks 
+        User->>Agent: Get Risks for deployment XYZ
+        Agent->>LLM: Give Risks for deployment XYZ + list of Tools
+        LLM->>LLM: Review request, Find right tool
+        LLM->>Agent: Call the query_deployment_risk Tool
+        Agent->>Tool: Calls query_deployment_risk tool 
+        Tool->>RHACS: Calls RHACS API
+        RHACS->>Tool: Risks for the deployment
         Tool->>Agent: JSON Formatted Risks
         Agent->>LLM: JSON Formatted Risks
         LLM->>Agent: Human-readable Risks and Remediations
         Agent->>User: Human-readable Risks and Remediations
-        
